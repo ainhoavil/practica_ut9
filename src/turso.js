@@ -17,11 +17,6 @@ if (fs.existsSync(envPath)) {
     console.warn("No se encontró el archivo .env");
 }
 
-// Mostrar las credenciales que se están usando en la app
-console.log("🔍 Conectando a Turso desde turso.js...");
-console.log("🔹 URL:", process.env.TURSO_DATABASE_URL);
-console.log("🔹 Token:", process.env.TURSO_AUTH_TOKEN);
-
 const db = createClient({
     url: process.env.TURSO_DATABASE_URL,
     authToken: process.env.TURSO_AUTH_TOKEN

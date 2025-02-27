@@ -1,7 +1,7 @@
 body {
     font-family: 'Poppins', sans-serif;
     text-align: center;
-    background: #032541; /* Azul oscuro TMDb */
+    background: #032541; 
     color: white;
     margin: 0;
     padding: 20px;
@@ -10,7 +10,7 @@ body {
 h1 {
     font-size: 2rem;
     margin-bottom: 20px;
-    color: #01b4e4; /* Azul celeste TMDb */
+    color: #01b4e4; 
     text-shadow: 2px 2px 6px rgba(1, 180, 228, 0.5);
 }
 
@@ -18,7 +18,7 @@ button {
     padding: 12px 20px;
     margin: 10px;
     cursor: pointer;
-    background: #90cea1; /* Verde TMDb */
+    background: #90cea1; 
     color: #032541;
     font-weight: bold;
     border: none;

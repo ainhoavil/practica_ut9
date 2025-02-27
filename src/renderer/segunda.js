@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             return;
         }
 
-        listaRanking.innerHTML = ""; // borra el contenido
+        listaRanking.innerHTML = ""; // Limpiar el contenido anterior
 
         if (ranking.length > 0) {
             // Mostrar solo las 10 primeras películas

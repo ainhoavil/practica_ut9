@@ -9,7 +9,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         console.log("✅ Cargando detalles de la película:", pelicula);
 
-        // Verifica que los elementos existen antes de asignar valores
         const titulo = document.getElementById("titulo");
         const fecha = document.getElementById("fecha");
         const resumen = document.getElementById("resumen");
@@ -21,13 +20,11 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-        // Asignar datos al HTML
         titulo.innerText = pelicula.title || "Título no disponible";
         fecha.innerText = pelicula.release_date ? `📅 ${pelicula.release_date}` : "Fecha de estreno no disponible";
         resumen.innerText = pelicula.overview || "No hay resumen disponible.";
         puntuacion.innerText = pelicula.vote_average ? `⭐ ${pelicula.vote_average}/10` : "Puntuación no disponible";
 
-        // Asignar imagen del poster
         if (pelicula.poster_path) {
             poster.src = `https://image.tmdb.org/t/p/w300${pelicula.poster_path}`;
             poster.alt = pelicula.title;
