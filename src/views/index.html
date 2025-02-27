@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Películas Populares</title>
+    <link rel="stylesheet" href="styles/styles.css">
+</head>
+<body>
+    <h1>🎬 Películas Populares</h1>
+    
+    <button id="abrirRanking">📊 Ver Ranking de Películas</button>
+    
+    <h2>🔍 Buscar Película</h2>
+    <input type="text" id="buscarInput" placeholder="Nombre de la película">
+    <button onclick="buscarPelicula()">🔎 Buscar</button>
+    <ul id="resultadoBusqueda"></ul>
+
+    <h2>📡 Películas en vivo desde TMDb</h2>
+    <ul id="listaPeliculas"></ul>
+
+    <h2>💾 Películas Almacenadas en Turso</h2>
+    <ul id="peliculasAlmacenadas"></ul>
+
+    <script src="../renderer/index.js"></script>
+</body>
+</html>
