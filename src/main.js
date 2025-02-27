@@ -35,7 +35,7 @@ app.on('activate', () => {
     if (ventanaPrincipal === null) crearVentanaPrincipal();
 });
 
-// 📌 Evento para abrir la segunda ventana (Ranking de películas)
+// Evento para abrir la segunda ventana (Ranking de películas)
 ipcMain.on('abrirSegundaVentana', () => {
     if (!ventanaRanking) {
         ventanaRanking = new BrowserWindow({
@@ -52,22 +52,8 @@ ipcMain.on('abrirSegundaVentana', () => {
     }
 });
 
-// 📌 Evento para cerrar la ventana de ranking y volver al índice
-ipcMain.on('cerrar-ranking', () => {
-    if (ventanaRanking) {
-        ventanaRanking.close();
-        ventanaRanking = null;
-    }
 
-    if (!ventanaPrincipal) {
-        crearVentanaPrincipal();
-    } else {
-        ventanaPrincipal.show();
-        ventanaPrincipal.focus();
-    }
-});
-
-// 📌 Evento para abrir múltiples ventanas con detalles de películas
+// Evento para abrir múltiples ventanas con detalles de películas
 ipcMain.on("abrirTerceraVentana", (event, pelicula) => {
     if (ventanasDetalles.has(pelicula.id)) {
         ventanasDetalles.get(pelicula.id).focus();
@@ -96,11 +82,14 @@ ipcMain.on("abrirTerceraVentana", (event, pelicula) => {
     });
 });
 
-// 📌 Evento para cerrar la ventana de detalles y volver al índice si es necesario
-ipcMain.on("cerrar-tercera", (event, id) => {
-    if (ventanasDetalles.has(id)) {
-        ventanasDetalles.get(id).close();
-        ventanasDetalles.delete(id);
+// Función reutilizable para cerrar ventanas y volver al índice si es necesario
+function cerrarVentana(ventana, coleccion = null, id = null) {
+    if (id && coleccion && coleccion.has(id)) {
+        coleccion.get(id).close();
+        coleccion.delete(id);
+    } else if (ventana) {
+        ventana.close();
+        ventana = null;
     }
 
     if (!ventanaPrincipal) {
@@ -109,9 +98,16 @@ ipcMain.on("cerrar-tercera", (event, id) => {
         ventanaPrincipal.show();
         ventanaPrincipal.focus();
     }
-});
+}
 
-// 📌 Obtener películas populares desde TMDb con Axios
+//  Evento para cerrar la ventana de ranking
+ipcMain.on("cerrar-ranking", () => cerrarVentana(ventanaRanking));
+
+//  Evento para cerrar la ventana de detalles
+ipcMain.on("cerrar-tercera", (event, id) => cerrarVentana(null, ventanasDetalles, id));
+
+
+// Obtener películas populares desde TMDb 
 ipcMain.handle('obtenerPeliculasPopulares', async () => {
     try {
         const respuesta = await axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=${TMDB_API_KEY}&language=es`);
@@ -132,7 +128,7 @@ ipcMain.handle('obtenerPeliculasPopulares', async () => {
     }
 });
 
-// 📌 Obtener películas almacenadas desde Turso
+// Obtener películas almacenadas desde Turso
 ipcMain.handle('obtenerPeliculasAlmacenadas', async () => {
     try {
         const resultado = await db.execute("SELECT * FROM peliculas ORDER BY popularidad DESC");
@@ -143,7 +139,7 @@ ipcMain.handle('obtenerPeliculasAlmacenadas', async () => {
     }
 });
 
-// 📌 Buscar películas por título usando Axios
+// Buscar películas por título 
 ipcMain.handle('buscarPelicula', async (event, consulta) => {
     try {
         const respuesta = await axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${TMDB_API_KEY}&query=${encodeURIComponent(consulta)}&language=es`);
@@ -154,7 +150,7 @@ ipcMain.handle('buscarPelicula', async (event, consulta) => {
     }
 });
 
-// 📌 📊 Análisis de ranking con Data-Forge
+//  Análisis de ranking con Data-Forge
 ipcMain.handle('analizarPeliculas', async () => {
     try {
         console.log("📊 Iniciando análisis de películas...");
@@ -168,10 +164,10 @@ ipcMain.handle('analizarPeliculas', async () => {
         const df = new dataForge.DataFrame(resultado.rows);
         const ranking = df.orderByDescending(row => row.popularidad).take(10).toArray();
 
-        console.log("✅ Ranking generado correctamente.");
+        console.log(" Ranking generado correctamente.");
         return ranking;
     } catch (error) {
-        console.error("❌ Error en análisis de películas:", error);
+        console.error("Error en análisis de películas:", error);
         return [];
     }
 } );

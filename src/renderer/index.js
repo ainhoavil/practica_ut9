@@ -73,10 +73,10 @@ function abrirVentanaRanking() {
     ipcRenderer.send('abrirSegundaVentana');
 }
 
-// Función para abrir la tercera ventana con detalles de la película
+// Función para abrir la tercera ventana
 function abrirVentanaDetalles(pelicula) {
     ipcRenderer.send("abrirTerceraVentana", pelicula);
 }
 
-// Asignar evento al botón para abrir `segunda.html`
+// Asignar evento al botón para abrir la segunda ventana
 document.getElementById("abrirRanking").addEventListener("click", abrirVentanaRanking);

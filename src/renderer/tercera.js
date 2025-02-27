@@ -3,7 +3,7 @@ const { ipcRenderer } = require("electron");
 document.addEventListener("DOMContentLoaded", () => {
     ipcRenderer.on("cargarDetallesPelicula", (event, pelicula) => {
         if (!pelicula) {
-            console.error("❌ No se recibieron datos de la película.");
+            console.error("No se recibieron datos de la película.");
             return;
         }
 
@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const poster = document.getElementById("poster");
 
         if (!titulo || !fecha || !resumen || !puntuacion || !poster) {
-            console.error("❌ No se encontraron los elementos en el HTML.");
+            console.error(" No se encontraron los elementos");
             return;
         }
 

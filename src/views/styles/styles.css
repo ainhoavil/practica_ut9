@@ -1,36 +1,47 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    font-family: 'Poppins', sans-serif;
     text-align: center;
+    background: #032541; /* Azul oscuro TMDb */
+    color: white;
+    margin: 0;
     padding: 20px;
 }
 
-h1, h2 {
-    color: #333;
+h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #01b4e4; /* Azul celeste TMDb */
+    text-shadow: 2px 2px 6px rgba(1, 180, 228, 0.5);
 }
 
 button {
-    background-color: #007BFF;
-    color: white;
-    border: none;
-    padding: 10px 20px;
+    padding: 12px 20px;
     margin: 10px;
     cursor: pointer;
-    border-radius: 5px;
-    font-size: 16px;
+    background: #90cea1; /* Verde TMDb */
+    color: #032541;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: 0.3s ease-in-out;
 }
 
 button:hover {
-    background-color: #0056b3;
+    background: #77b990;
+    transform: scale(1.05);
 }
 
 input {
-    padding: 8px;
-    width: 300px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
+    padding: 10px;
+    margin: 10px;
+    width: 80%;
+    max-width: 300px;
+    border: 2px solid #01b4e4;
     border-radius: 5px;
-    font-size: 14px;
+    font-size: 1rem;
+    background: #01334d;
+    color: white;
 }
 
 ul {
@@ -42,25 +53,71 @@ ul {
 }
 
 li {
-    background: white;
+    background: #073f5c; 
+    color: white;
     margin: 10px;
-    padding: 10px;
-    border-radius: 5px;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 8px rgba(1, 180, 228, 0.5);
     width: 220px;
-    text-align: center;
+    transition: 0.3s ease-in-out;
+}
+
+li:hover {
+    transform: translateY(-5px);
 }
 
 img {
     width: 100%;
-    border-radius: 5px;
+    border-radius: 10px;
+    margin-bottom: 10px;
 }
 
-.clickable {
-    cursor: pointer;
-    transition: transform 0.2s;
+#listaRanking li {
+    font-size: 1rem;
+    font-weight: bold;
+    background: #B0BEC5; 
+    color: #032541;
 }
 
-.clickable:hover {
-    transform: scale(1.05);
+.volver {
+    background: #d32f2f; 
+    color: white;
+}
+
+.volver:hover {
+    background: #b71c1c;
+}
+
+.movie-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #014f6d;
+    border-radius: 10px;
+    padding: 15px;
+    margin: 10px;
+    transition: 0.3s;
+}
+
+.movie-card:hover {
+    background: #025c7f;
+    transform: scale(1.03);
+}
+
+.rating {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #90cea1; 
+}
+
+@media (max-width: 768px) {
+    ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    li {
+        width: 90%;
+    }
 }
